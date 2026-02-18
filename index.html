@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para ti 💖</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+.card {
+  background: white;
+  width: 300px;
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  position: absolute;
+  z-index: 2;
+
+  /* animación */
+  opacity: 0;
+  transform: scale(0.9) translateY(20px);
+  transition: all 0.4s ease;
+  pointer-events: none;
+}
+
+.card.active {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  pointer-events: auto;
+}
+
+button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  background: #ff5e8a;
+  color: white;
+  font-size: 16px;
+}
+
+img {
+  width: 100%;
+  border-radius: 15px;
+}
+
+.hearts {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.heart {
+  position: absolute;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  from {
+    transform: translateY(-10%) rotate(0deg);
+  }
+  to {
+    transform: translateY(110vh) rotate(360deg);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="hearts" id="hearts"></div>
+
+<div class="card active">
+  <h2>Holiss mi princesita 💕</h2>
+  <p>Quiero que mires estoo lo hice para ti 😳</p>
+  <button onclick="nextCard()">Siguiente</button>
+</div>
+
+<div class="card">
+  <h2>Quería decirte 💖</h2>
+  <p>Que desde que llegaste ah mi vida,todo se siente más bonito.</p>
+  <button onclick="nextCard()">Siguiente</button>
+</div>
+
+<div class="card">
+  <h2>Mírate tan linda tú 🥺💘</h2>
+  <img src="foto.jpg">
+  <p><b>quiero que mires lo hermosa que eres ante mis ojos.</b></p>
+  <button onclick="nextCard()">Siguiente</button>
+</div>
+
+<div class="card">
+  <h2>La verdad 💕</h2>
+  <p>Me encanta tu sonrisa, tus ojitos, tu carita, tu forma de ser, tu voz amoo todito de ti</p>
+  <button onclick="nextCard()">Siguiente</button>
+</div>
+
+<div class="card">
+  <h2>Contigo 😌</h2>
+  <p>Los dias son mas calidos y las noches mas coloridas.</p>
+  <button onclick="nextCard()">Siguiente</button>
+</div>
+
+<div class="card">
+  <h2>Gracias 🥹</h2>
+  <p>Por existir, por ser tú, por estar en mi vida.</p>
+  <button onclick="nextCard()">Siguiente</button>
+</div>
+
+<div class="card">
+  <h2>Promesa 💞</h2>
+  <p>Siempre voy apoyarte pase lo que pase.</p>
+  <button onclick="nextCard()">Siguiente</button>
+</div>
+
+<div class="card">
+  <h2>y nunca olvides que...</h2>
+  <p>Te amoo muchisimoo mi vida y que parq mi eres y siempre seras mi niña titita y por supuesto la mas hermosaa💞🏻</p>
+</div>
+
+<script>
+let current = 0;
+const cards = document.querySelectorAll(".card");
+
+function nextCard() {
+  cards[current].classList.remove("active");
+  current++;
+  if (current < cards.length) {
+    cards[current].classList.add("active");
+  }
+}
+
+// Corazones cayendo y girando
+const heartsContainer = document.getElementById("hearts");
+const emojis = ["❤️","💖","💘","💕","💞","💓","💗","💝","💟"];
+
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (3 + Math.random() * 4) + "s";
+  heart.style.fontSize = (16 + Math.random() * 30) + "px";
+  heartsContainer.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 7000);
+}, 150);
+</script>
+
+</body>
+</html>
+
